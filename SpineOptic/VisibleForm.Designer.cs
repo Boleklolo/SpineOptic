@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VisibleForm));
             comboBox1 = new ComboBox();
             pictureBox1 = new PictureBox();
@@ -48,6 +49,7 @@
             button4 = new Button();
             button5 = new Button();
             button6 = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -227,6 +229,12 @@
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 500;
+            timer1.Tick += timer1_Tick;
+            // 
             // VisibleForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -258,6 +266,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Spinoptic Dashboard";
             FormClosing += VisibleForm_FormClosing;
+            Load += VisibleForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -286,5 +295,6 @@
         public ComboBox comboBox1;
         public TextBox textBox1;
         public TextBox textBox2;
+        private System.Windows.Forms.Timer timer1;
     }
 }

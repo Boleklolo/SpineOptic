@@ -1,33 +1,31 @@
-﻿namespace SpineOptic
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace SpineOptic
 {
     public partial class VisibleForm : Form
     {
         public VisibleForm()
         {
             InitializeComponent();
-
-
             //Find CustomTheme.png in project dir
             pictureBox2.ImageLocation = Environment.CurrentDirectory + "\\CustomTheme.png";
+        }
 
-            //Set values of textBox1 and 2 to 2
-
-            //Load system
-            textBox1.Text = "5";
-            textBox2.Text = "10";
-            comboBox1.SelectedItem = "Dark Theme";
-
-
-        }//Initializator
-        
-        Config config = new Config();
-        NotificationShower notificationShower = new NotificationShower();
+        readonly Config config = new Config();
+        readonly NotificationShower notificationShower = new NotificationShower();
+        readonly AboutForm aboutForm = new AboutForm();
         private void VisibleForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Prevent the form from closing
+            e.Cancel = true;
+
+            // Hide the form
+            this.Hide();
             if (!config.isSecondNotifShown)
             {
-                notificationShower.ShowExitNotification();
+                notificationShower.ShowExitNotification(); //Tu sie odpierdala
             }
+
         }
         public void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -38,11 +36,12 @@
             {
                 //Enable picturebox
                 pictureBox1.Visible = true;
+                pictureBox2.Visible = false;
             }
             else if (selectedValue == "Custom Theme")
             {
-                pictureBox1.Visible = false;
                 //Enable picturebox
+                pictureBox1.Visible = false;
                 pictureBox2.Visible = true;
             }
             else
@@ -96,7 +95,8 @@
         public void textBox1_TextChanged(object sender, EventArgs e)
         {
             // Remove non-numeric characters
-            textBox1.Text = System.Text.RegularExpressions.Regex.Replace(textBox2.Text, "[^0-9]", "");
+            textBox1.Text = System.Text.RegularExpressions.Regex.Replace(textBox1.Text, "[^0-9]", "");
+
             //Remove if char number is higher than 6
 
             if (textBox1.Text.Length > 6)
@@ -143,7 +143,6 @@
                     break;
 
                 case "About":
-                    AboutForm aboutForm = new AboutForm();
                     aboutForm.ShowDialog();
                     break;
 
@@ -152,6 +151,7 @@
                     break;
 
             }
+
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -166,17 +166,22 @@
         }
         private void button5_Click(object sender, EventArgs e)
         {
+            config.isLucCheat = true;
+            config.isCusCheat = true;
         }
         private void button6_Click(object sender, EventArgs e)
         {
-            Config config = new Config();
-            config.isLucCheat = true;
-            config.isCusCheat = true;
-
-            //config.SaveConfig();
-
+            config.SaveConfigToFile(); //Sprawdz potem
         }
 
+        private void VisibleForm_Load(object sender, EventArgs e)
+        {
+            config.LoadConfigFromFile();
+        }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            config.LoadConfigFromFile();
+        }
     }
 }

@@ -4,6 +4,7 @@ namespace SpineOptic
 {
     internal class NotificationShower
     {
+        readonly Config config = new Config();
         public void ShowEyeNotification()
         {
             //Set working dir
@@ -36,10 +37,10 @@ namespace SpineOptic
 
         public void ShowExitNotification()
         {
-            BackgroundForm backgroundForm = new BackgroundForm();   
-            if (!backgroundForm.isSecondNotifShown)
+            
+            if (!config.isSecondNotifShown)
             {
-                backgroundForm.isSecondNotifShown = true;
+                config.isSecondNotifShown = true;
                 //Set working dir
                 string projectLocation = Environment.CurrentDirectory;
                 //Create cmd process
@@ -51,16 +52,18 @@ namespace SpineOptic
                 cmd.StartInfo.CreateNoWindow = true;
                 //Run minimized to no disturb user
                 cmd.Start();
+                //backgroundForm.Close(); //Tu sie odpierdala
+                //Fiut nademna juz nie jest potrzebny #frajer
             }
 
         }
 
-        public void ShowFirstNotification()
+        public void ShowFirstNotification() //This dot work :cry:
         {
             BackgroundForm backgroundForm = new BackgroundForm();   
-            if (backgroundForm.isFirstNotifShown == false)
+            if (!config.isFirstNotifShown)
             {
-                backgroundForm.isFirstNotifShown = true;
+                config.isFirstNotifShown = true;
                 //Set working dir
                 string projectLocation = Environment.CurrentDirectory;
                 //Create cmd process
@@ -80,11 +83,11 @@ namespace SpineOptic
             BackgroundForm backgroundForm = new BackgroundForm();  
             VisibleForm visibleForm = new VisibleForm();
             //Theme Unlocker
-            if (backgroundForm.isLucThemeUnlocked && !visibleForm.comboBox1.Items.Contains("Lucario Theme"))
+            if (config.isLucCheat && !visibleForm.comboBox1.Items.Contains("Lucario Theme"))
             {
                 visibleForm.comboBox1.Items.Add("Lucario Theme");
             }
-            else if (backgroundForm.isCustomThemeUnlocked && !visibleForm.comboBox1.Items.Contains("Custom Theme"))
+            else if (config.isCusCheat && !visibleForm.comboBox1.Items.Contains("Custom Theme"))
             {
                 visibleForm.comboBox1.Items.Add("Custom Theme");
             }

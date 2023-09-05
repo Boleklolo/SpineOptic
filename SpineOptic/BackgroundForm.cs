@@ -6,19 +6,10 @@
         {
             InitializeComponent();
         }
-        public bool isFirstNotifShown = false;
-        public bool isSecondNotifShown = false;
-        public bool isLucThemeUnlocked = false;
-        public bool isCustomThemeUnlocked = false;
-
         NotificationShower notificationShower = new NotificationShower();
+        VisibleForm visibleForm = new VisibleForm();
 
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Exit
-            Application.Exit();
-        }
+        //Nie
 
 
         private void EyeTimer_Tick(object sender, EventArgs e)
@@ -40,18 +31,23 @@
         {
             openForm();
         }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            openForm();
+        }
         private void openForm()
         {
-            //If there is an existing instance of visibleform, move to front, if not, open
+            visibleForm.Show();
             if (Application.OpenForms.OfType<VisibleForm>().Count() == 1)
             {
                 Application.OpenForms.OfType<VisibleForm>().First().BringToFront();
             }
-            else
-            {
-                VisibleForm visibleForm = new VisibleForm();
-                visibleForm.Show();
-            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

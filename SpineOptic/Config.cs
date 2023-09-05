@@ -3,9 +3,6 @@
     internal class Config
     {
         
-        BackgroundForm backgroundForm = new BackgroundForm();
-        VisibleForm visibleForm = new VisibleForm();    
-
         //Database
         //Write here all the data that can be used by software
         public bool isFirstNotifShown = false;
@@ -17,26 +14,12 @@
         public int eyeBoxValue = 10;
         public int spineBoxValue = 20;
         public string currentTheme = "Dark Theme";
-        public void SaveConfig()
-        {
-            isFirstNotifShown = backgroundForm.isFirstNotifShown;
-            isSecondNotifShown = backgroundForm.isSecondNotifShown;
-            isLucCheat = backgroundForm.isLucThemeUnlocked;
-            isCusCheat = backgroundForm.isCustomThemeUnlocked;
 
-            eyeBoxValue = Convert.ToInt32(visibleForm.textBox1.Text);
-            spineBoxValue = Convert.ToInt32(visibleForm.textBox2.Text);
-            currentTheme = visibleForm.comboBox1.Text;
-
-            SaveConfigToFile();
-        }
         public void SaveConfigToFile()
         {
-            // Define the file path for the config.txt file in your project directory
+            // Define the file path for the config.txt file in project directory
             string filePath = "config.txt";
 
-            try
-            {
                 using (StreamWriter writer = new StreamWriter(filePath))
                 {
                     // Write the values to the config file
@@ -47,24 +30,13 @@
                     writer.WriteLine($"eyeBoxValue={eyeBoxValue}");
                     writer.WriteLine($"spineBoxValue={spineBoxValue}");
                     writer.WriteLine($"currentTheme={currentTheme}");
-                    writer.WriteLine(" ");
-                    writer.WriteLine("Where you looking at?");
                 }
 
-                MessageBox.Show("Configuration saved to config.txt");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
         }
         public void LoadConfigFromFile()
         {
             //Load config saed by saveconfigtofile
             string filePath = "config.txt";
-
-            try
-            {
                 if (File.Exists(filePath))
                 {
                     using (StreamReader reader = new StreamReader(filePath))
@@ -104,24 +76,17 @@
                                     case "currentTheme":
                                         currentTheme = value;
                                         break;
-                                        // Add more cases for other configuration keys
                                 }
                             }
                         }
                     }
-
-                    MessageBox.Show("Configuration loaded from config.txt");
                 }
                 else
                 {
                     MessageBox.Show("Config file does not exist.");
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
         }
-        
     }
+        
 }
+

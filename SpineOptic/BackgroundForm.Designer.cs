@@ -29,37 +29,18 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            NotifyIcon notifyIcon1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackgroundForm));
+            ToolStripMenuItem showFormAboutToolStripMenuItem;
             contextMenuStrip1 = new ContextMenuStrip(components);
-            showFormAboutToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
-            notifyIcon1 = new NotifyIcon(components);
             EyeTimer = new System.Windows.Forms.Timer(components);
             SpineTimer = new System.Windows.Forms.Timer(components);
             ThemeTimer = new System.Windows.Forms.Timer(components);
+            notifyIcon1 = new NotifyIcon(components);
+            showFormAboutToolStripMenuItem = new ToolStripMenuItem();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showFormAboutToolStripMenuItem, exitToolStripMenuItem });
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(211, 80);
-            // 
-            // showFormAboutToolStripMenuItem
-            // 
-            showFormAboutToolStripMenuItem.Name = "showFormAboutToolStripMenuItem";
-            showFormAboutToolStripMenuItem.Size = new Size(210, 24);
-            showFormAboutToolStripMenuItem.Text = "Dashboard";
-            showFormAboutToolStripMenuItem.Click += showFormAboutToolStripMenuItem_Click_1;
-            // 
-            // exitToolStripMenuItem
-            // 
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(210, 24);
-            exitToolStripMenuItem.Text = "Exit";
-            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // notifyIcon1
             // 
@@ -67,6 +48,28 @@
             notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
             notifyIcon1.Text = "Right click to show options, double click to open.";
             notifyIcon1.Visible = true;
+            notifyIcon1.MouseDoubleClick += notifyIcon1_MouseDoubleClick;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showFormAboutToolStripMenuItem, exitToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(152, 52);
+            // 
+            // showFormAboutToolStripMenuItem
+            // 
+            showFormAboutToolStripMenuItem.Name = "showFormAboutToolStripMenuItem";
+            showFormAboutToolStripMenuItem.Size = new Size(151, 24);
+            showFormAboutToolStripMenuItem.Text = "Dashboard";
+            showFormAboutToolStripMenuItem.Click += showFormAboutToolStripMenuItem_Click_1;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(151, 24);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // EyeTimer
             // 
