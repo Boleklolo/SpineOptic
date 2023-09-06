@@ -13,17 +13,18 @@ namespace SpineOptic
 
         readonly Config config = new Config();
         readonly NotificationShower notificationShower = new NotificationShower();
-        readonly AboutForm aboutForm = new AboutForm();
+        readonly About aboutForm = new About();
         private void VisibleForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Prevent the form from closing
             e.Cancel = true;
-
+            config.SaveConfigToFile();
             // Hide the form
             this.Hide();
             if (!config.isSecondNotifShown)
             {
-                notificationShower.ShowExitNotification(); //Tu sie odpierdala
+                notificationShower.ShowExitNotification();
+                config.isSecondNotifShown = true;
             }
 
         }
@@ -101,7 +102,7 @@ namespace SpineOptic
 
             if (textBox1.Text.Length > 6)
             {
-                textBox1.Text = textBox2.Text.Remove(6);
+                textBox1.Text = textBox1.Text.Remove(6);
             }
             // Check if the textbox is empty (it might be after removing non-numeric characters)
             if (string.IsNullOrWhiteSpace(textBox1.Text))
@@ -127,61 +128,90 @@ namespace SpineOptic
             }
 
         }
-        private void menuStrip1_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
-        {
-            string itemText = e.ClickedItem.Text;
 
-
-            switch (itemText)
-            {
-                case "Export config":
-                    MessageBox.Show("Export config");
-                    break;
-
-                case "Import config":
-                    MessageBox.Show("Import config");
-                    break;
-
-                case "About":
-                    aboutForm.ShowDialog();
-                    break;
-
-                case "Exit":
-                    Application.Exit();
-                    break;
-
-            }
-
-        }
         private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void button4_Click(object sender, EventArgs e)
-        {
-        }
-        private void button5_Click(object sender, EventArgs e)
         {
             config.isLucCheat = true;
             config.isCusCheat = true;
         }
-        private void button6_Click(object sender, EventArgs e)
-        {
-            config.SaveConfigToFile(); //Sprawdz potem
-        }
+
 
         private void VisibleForm_Load(object sender, EventArgs e)
         {
             config.LoadConfigFromFile();
+            textBox1.Text = Convert.ToString(config.eyeBoxValue);
+            textBox2.Text = Convert.ToString(config.spineBoxValue);
+            comboBox1.Text = Convert.ToString(config.currentTheme);
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            config.LoadConfigFromFile();
+            UpdateThemes();
+            FixNulls();
         }
+
+        private void Export_Click(object sender, EventArgs e)
+        {
+            ExportValues();
+        }
+
+        private void Import_Click(object sender, EventArgs e)
+        {
+            ImportValues();
+        }
+
+        private void About_Click(object sender, EventArgs e)
+        {
+            aboutForm.ShowDialog();
+        }
+
+        public void ImportValues()
+        {
+            config.LoadConfigFromFile();
+            textBox1.Text = Convert.ToString(config.eyeBoxValue);
+            textBox2.Text = Convert.ToString(config.spineBoxValue);
+            comboBox1.Text = Convert.ToString(config.currentTheme);
+
+
+        }
+        public void ExportValues()
+        {
+            config.eyeBoxValue = Convert.ToInt32(textBox1.Text);
+            config.spineBoxValue = Convert.ToInt32(textBox2.Text);
+            config.currentTheme = comboBox1.SelectedItem.ToString();
+            config.SaveConfigToFile();
+        }
+        public void UpdateThemes()
+        {
+            //Theme Unlocker
+            //if config.isLucCheat = true and no Lucario Theme in combobox1
+            if (config.isLucCheat == true && !comboBox1.Items.Contains("Lucario Theme"))
+            {
+                comboBox1.Items.Add("Lucario Theme");
+            }
+            //ditto but with config.isCusCheat and no Custom Theme in combobox1
+            if (config.isCusCheat == true && !comboBox1.Items.Contains("Custom Theme"))
+            {
+                comboBox1.Items.Add("Custom Theme");
+            }
+        }
+        public void FixNulls()
+        {
+            //Pretty self explainatory, fixes unhandled exceptions for saving/loading config
+            if (comboBox1.SelectedItem == null)
+            {
+                comboBox1.SelectedItem = "Dark Theme";
+            }
+            if (textBox1.Text == null)
+            {
+                textBox1.Text = "20";
+            }
+            if (textBox2.Text == null)
+            {
+                textBox2.Text = "20";
+            }
+        }
+
     }
 }

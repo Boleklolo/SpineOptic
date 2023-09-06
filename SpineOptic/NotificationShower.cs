@@ -58,9 +58,8 @@ namespace SpineOptic
 
         }
 
-        public void ShowFirstNotification() //This dot work :cry:
+        public void ShowFirstNotification() //This dot work :cry: (a kurwa odwolan nie ma xddddddddddd)
         {
-            BackgroundForm backgroundForm = new BackgroundForm();   
             if (!config.isFirstNotifShown)
             {
                 config.isFirstNotifShown = true;
@@ -73,24 +72,11 @@ namespace SpineOptic
                 cmd.StartInfo.WorkingDirectory = projectLocation;
                 cmd.StartInfo.Arguments = "-ExecutionPolicy Bypass -File FirstRun.ps1";
                 cmd.StartInfo.CreateNoWindow = true;
-                //Run minimized to no disturb user
+                //Run minimized to not disturb user
                 cmd.Start();
             }
         }
 
-        public void UpdateThemes()
-        {   
-            BackgroundForm backgroundForm = new BackgroundForm();  
-            VisibleForm visibleForm = new VisibleForm();
-            //Theme Unlocker
-            if (config.isLucCheat && !visibleForm.comboBox1.Items.Contains("Lucario Theme"))
-            {
-                visibleForm.comboBox1.Items.Add("Lucario Theme");
-            }
-            else if (config.isCusCheat && !visibleForm.comboBox1.Items.Contains("Custom Theme"))
-            {
-                visibleForm.comboBox1.Items.Add("Custom Theme");
-            }
-        }
+
     }
 }

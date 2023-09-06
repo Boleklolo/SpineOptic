@@ -1,33 +1,43 @@
-﻿namespace SpineOptic
+﻿using System.Diagnostics;
+
+namespace SpineOptic
 {
-    public partial class AboutForm : Form
+    public partial class About : Form
     {
-        public AboutForm()
+        public About()
         {
             InitializeComponent();
         }
-
-        private void timer1_Tick(object sender, EventArgs e)
+        Config Config = new Config();
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            Updatelabels();
+            if (textBox1.Text == "Lucario")
+            {
+                Config.isLucCheat = true;
+            }
+
+            if (textBox1.Text == "1337")
+            {
+                Config.isCusCheat = true;
+            }
         }
 
-        int i;
-        private void Updatelabels()
+        private void linkLabel1_Click(object sender, EventArgs e)
         {
-            
-            i++;
-            Config config = new Config();
-            //Update labels using config.cs data
-            label1.Text = config.isFirstNotifShown.ToString();
-            label2.Text = config.isSecondNotifShown.ToString();
-            label3.Text = config.isLucCheat.ToString();
-            label4.Text = config.isCusCheat.ToString();
-            label5.Text = config.eyeBoxValue.ToString();
-            label6.Text = config.spineBoxValue.ToString();
-            label7.Text = config.currentTheme.ToString();
-            label8.Text = Convert.ToString(i);
+            System.Diagnostics.Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://github.com/Boleklolo/SpineOptic",
+                UseShellExecute = true
+            });
+        }
 
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new ProcessStartInfo
+            {
+                FileName = "http://boleksgarage.cba.pl",
+                UseShellExecute = true
+            });
         }
     }
 }

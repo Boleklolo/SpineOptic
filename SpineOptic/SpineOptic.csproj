@@ -7,14 +7,14 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <SignAssembly>False</SignAssembly>
-    <ApplicationIcon>obraz_2023-08-26_223245494.ico</ApplicationIcon>
+    <ApplicationIcon>letter-s.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
 
 
   <ItemGroup>
-    <Content Include="obraz_2023-08-26_223245494.ico" />
+    <Content Include="letter-s.ico" />
   </ItemGroup>
 
 

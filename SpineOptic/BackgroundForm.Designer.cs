@@ -36,7 +36,7 @@
             exitToolStripMenuItem = new ToolStripMenuItem();
             EyeTimer = new System.Windows.Forms.Timer(components);
             SpineTimer = new System.Windows.Forms.Timer(components);
-            ThemeTimer = new System.Windows.Forms.Timer(components);
+            CheckerTimer = new System.Windows.Forms.Timer(components);
             notifyIcon1 = new NotifyIcon(components);
             showFormAboutToolStripMenuItem = new ToolStripMenuItem();
             contextMenuStrip1.SuspendLayout();
@@ -73,15 +73,20 @@
             // 
             // EyeTimer
             // 
+            EyeTimer.Enabled = true;
+            EyeTimer.Interval = 5000;
             EyeTimer.Tick += EyeTimer_Tick;
             // 
             // SpineTimer
             // 
+            SpineTimer.Enabled = true;
+            SpineTimer.Interval = 5000;
             SpineTimer.Tick += SpineTimer_Tick;
             // 
-            // ThemeTimer
+            // CheckerTimer
             // 
-            ThemeTimer.Tick += ThemeTimer_Tick;
+            CheckerTimer.Enabled = true;
+            CheckerTimer.Tick += checkerTimer_Tick;
             // 
             // BackgroundForm
             // 
@@ -95,6 +100,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             WindowState = FormWindowState.Minimized;
+            Load += BackgroundForm_Load;
             contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -106,6 +112,6 @@
         private NotifyIcon notifyIcon1;
         private System.Windows.Forms.Timer EyeTimer;
         private System.Windows.Forms.Timer SpineTimer;
-        private System.Windows.Forms.Timer ThemeTimer;
+        private System.Windows.Forms.Timer CheckerTimer;
     }
 }

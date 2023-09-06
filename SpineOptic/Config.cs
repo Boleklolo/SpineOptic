@@ -11,9 +11,10 @@
         public bool isLucCheat = false;
         public bool isCusCheat = false;
 
-        public int eyeBoxValue = 10;
-        public int spineBoxValue = 20;
+        public int eyeBoxValue = 600;
+        public int spineBoxValue = 300;
         public string currentTheme = "Dark Theme";
+
 
         public void SaveConfigToFile()
         {
@@ -31,6 +32,7 @@
                     writer.WriteLine($"spineBoxValue={spineBoxValue}");
                     writer.WriteLine($"currentTheme={currentTheme}");
                 }
+        MessageBox.Show("Config file saved.");
 
         }
         public void LoadConfigFromFile()
@@ -77,11 +79,14 @@
                                         currentTheme = value;
                                         break;
                                 }
+                                
                             }
-                        }
                     }
-                }
-                else
+                    }
+                MessageBox.Show("Config file loaded.");
+
+            }
+            else
                 {
                     MessageBox.Show("Config file does not exist.");
                 }
