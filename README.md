@@ -6,6 +6,7 @@ The app is low-weight and uses up to 42MB of RAM on idle.
 The app shows notifications for posture checks and 20/20/20 rule.
 
 20/20/20 rile - Each 20 minutes, look away at something 20 feet (6m) away for 20 seconds.
+The app is utterly broken, will be fixed in 1.1
 Instructions
   Open the program, to open dashboard right click it's icon on toolbox and press "Dashboard"
 Here you can find value boxes for each part's timer (In seconds) and a theme manager. Pretty simple. There is no autosave yet (though one is planned for 1.1 if it ever releases). For now though you'll have to stick to Save Config option on top of the screen. Load Config is pretty useless as the config is loaded with each start of the program and the other values are kept until it's shut down. 
