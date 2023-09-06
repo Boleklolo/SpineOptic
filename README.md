@@ -1,4 +1,7 @@
 # SpineOptic
+
+Warning! This might get flagged as malware for some reason. Please exclude it in your anti virus. I have no idea what causes that but I'll work on it.
+
 Created to learn C# and Windows Forms and also just to take care for our eyes and backs.
 Made with heart while Chłopcy Radarowcy player on loop. :)
 The app is low-weight and uses up to 42MB of RAM on idle.
