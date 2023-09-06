@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
             label1 = new Label();
             linkLabel1 = new LinkLabel();
             linkLabel2 = new LinkLabel();
@@ -157,6 +158,7 @@
             Controls.Add(linkLabel2);
             Controls.Add(linkLabel1);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "About";
             Text = "About";
             ResumeLayout(false);
